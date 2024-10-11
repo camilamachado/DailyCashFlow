@@ -16,7 +16,7 @@ namespace DailyCashFlow.WebApi.Configurations
 					Version = "v1",
 					Title = "DailyCashFlow.WebApi",
 					Description = "Esta API é responsável por se comunicar com o front-end",
-					Contact = new OpenApiContact { Name = "Camila Melo Machado", Email = "camila_melomachado@hotmail.com", Url = new Uri("https://github.com/camilamachado") }
+					Contact = new OpenApiContact { Name = "Camila Melo Machado", Url = new Uri("https://github.com/camilamachado") }
 				});
 
 				var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";

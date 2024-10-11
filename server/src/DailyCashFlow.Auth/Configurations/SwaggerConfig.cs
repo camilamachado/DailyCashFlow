@@ -16,7 +16,7 @@ namespace DailyCashFlow.Auth.Configurations
 					Version = "v1",
 					Title = "DailyCashFlow.Auth",
 					Description = "Esta API é responsável por prover tokens de acesso para DailyCashFlow.WebApi",
-					Contact = new OpenApiContact { Name = "Camila Melo Machado", Email = "camila_melomachado@hotmail.com", Url = new Uri("https://github.com/camilamachado") }
+					Contact = new OpenApiContact { Name = "Camila Melo Machado", Url = new Uri("https://github.com/camilamachado") }
 				});
 
 				var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
