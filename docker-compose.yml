@@ -1,0 +1,64 @@
+services:
+  auth-api:
+    container_name: auth-api
+    image: auth-api
+    build:
+      context: ./server/src
+      dockerfile: DailyCashFlow.Auth/Dockerfile
+    ports:
+      - "5000:80"
+    depends_on:
+      - sqlserver
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=DailyCashFlowDB;User Id=sa;Password=YourStrong@Passw0rd;Encrypt=False;
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - mynetwork
+
+  web-api:
+    container_name: web-api
+    image: web-api
+    build:
+      context: ./server/src
+      dockerfile: DailyCashFlow.WebApi/Dockerfile
+    ports:
+      - "5001:80"
+    depends_on:
+      - sqlserver
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=DailyCashFlowDB;User Id=sa;Password=YourStrong@Passw0rd;Encrypt=False;
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - mynetwork
+
+  sqlserver:
+    container_name: sqlserver
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong@Passw0rd
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlvolume:/var/opt/mssql
+    networks:
+      - mynetwork
+
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce
+    command: -H unix:///var/run/docker.sock
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+volumes:
+  sqlvolume:
+  portainer_data:
+
+
+networks:
+  mynetwork:
+    driver: bridge

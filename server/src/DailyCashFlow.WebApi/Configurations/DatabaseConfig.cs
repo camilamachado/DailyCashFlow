@@ -9,8 +9,10 @@ namespace DailyCashFlow.WebApi.Configurations
 		{
 			if (services == null) throw new ArgumentNullException(nameof(services));
 
+			var connectionString = configuration.GetConnectionString("DefaultConnection");
+
 			services.AddDbContext<DailyCashFlowDbContext>(options =>
-				options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+				options.UseSqlServer(connectionString));
 
 			var serviceProvider = services.BuildServiceProvider();
 

@@ -11,7 +11,9 @@ namespace DailyCashFlow.WebApi
 		public Startup(IConfiguration configuration)
 		{
 			var builder = new ConfigurationBuilder()
-				.AddJsonFile("appsettings.json", true, true);
+				.AddConfiguration(configuration) 
+				.AddJsonFile("appsettings.json", true, true)
+				.AddEnvironmentVariables();
 
 			Configuration = builder.Build();
 		}
