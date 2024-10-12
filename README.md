@@ -31,4 +31,4 @@ O arquivo `docker-compose.yml` define os serviços da aplicação. A configuraç
 
 ## Acessando documentação das APIs
 - `auth-api`: http://localhost:5000/swagger/index.html
-- `web-api`: http://localhost:5001/swagger/index.html
+- `web-api`: http://localhost:5003/swagger/index.html
