@@ -13,11 +13,6 @@ namespace DailyCashFlow.Auth.Configurations
 
 			services.AddDbContext<DailyCashFlowDbContext>(options =>
 				options.UseSqlServer(connectionString));
-
-			var serviceProvider = services.BuildServiceProvider();
-
-			var dailyCashFlowDbContext = serviceProvider.GetRequiredService<DailyCashFlowDbContext>();
-			dailyCashFlowDbContext.Database.Migrate();
 		}
 	}
 }
