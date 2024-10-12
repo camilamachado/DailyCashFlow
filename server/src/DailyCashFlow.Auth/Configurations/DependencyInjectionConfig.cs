@@ -15,7 +15,6 @@ namespace DailyCashFlow.Auth.Configurations
 
 			// Repositories
 			services.AddScoped<IUserRepository, UserRepository>();
-			services.AddScoped<IUserFactory, UserFactory>();
 		}
 	}
 }

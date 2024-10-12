@@ -1,4 +1,6 @@
-﻿using DailyCashFlow.Application;
+﻿using DailyCashFlow.Application.Features.Auth.Handlers;
+using DailyCashFlow.Infra.ResultPattern;
+using MediatR;
 
 namespace DailyCashFlow.Auth.Configurations
 {
@@ -11,8 +13,9 @@ namespace DailyCashFlow.Auth.Configurations
 			services.AddMediatR(cfg =>
 			{
 				cfg.RegisterServicesFromAssemblyContaining(typeof(Startup));
-				cfg.RegisterServicesFromAssemblyContaining(typeof(AppModule));
 			});
+
+			services.AddTransient<IRequestHandler<AuthToken.Command, Result<string, Exception>>, AuthToken.Handler>();
 		}
 	}
 }
