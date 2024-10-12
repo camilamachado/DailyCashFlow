@@ -12,6 +12,7 @@ services:
     environment:
       - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=DailyCashFlowDB;User Id=sa;Password=YourStrong@Passw0rd;Encrypt=False;
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
     networks:
       - mynetwork
 
@@ -22,12 +23,13 @@ services:
       context: ./server/src
       dockerfile: DailyCashFlow.WebApi/Dockerfile
     ports:
-      - "5001:80"
+      - "5003:80"
     depends_on:
       - sqlserver
     environment:
       - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=DailyCashFlowDB;User Id=sa;Password=YourStrong@Passw0rd;Encrypt=False;
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
     networks:
       - mynetwork
 
