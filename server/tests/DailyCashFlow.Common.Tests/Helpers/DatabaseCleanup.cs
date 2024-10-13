@@ -10,6 +10,20 @@ namespace DailyCashFlow.Common.Tests.Helpers
 			var usersToRemove = context.Users.Where(user => user.Email != "admin@admin.com");
 			context.Users.RemoveRange(usersToRemove);
 
+			// Remove todas as categorias, exceto as categorias padrão
+			var defaultCategories = new[]
+			{
+				"Despesas Operacionais",
+				"Compras",
+				"Pagamentos",
+				"Perdas",
+				"Vendas",
+				"Recebimentos",
+				"Outras Receitas"
+			};
+
+			var categoriesToRemove = context.Categories.Where(category => !defaultCategories.Contains(category.Name));
+			context.Categories.RemoveRange(categoriesToRemove);
 
 			context.SaveChanges();
 		}

@@ -10,7 +10,7 @@ using System.Text;
 namespace DailyCashFlow.WebApi.Integration.Tests.Features.Users
 {
 	[TestFixture]
-	public class UserControllerTests : BaseWebApiIntegrationTests
+	public class UsersControllerTests : BaseWebApiIntegrationTests
 	{
 		[Test]
 		public async Task CriarUsuario_Com_TokenValido_DeveRetornarOk()
