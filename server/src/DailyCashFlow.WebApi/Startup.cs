@@ -1,5 +1,7 @@
 ﻿using DailyCashFlow.WebApi.Configurations;
 using DailyCashFlow.WebApi.Filters;
+using Microsoft.AspNetCore.OData;
+using Microsoft.OData.ModelBuilder;
 using Serilog;
 
 namespace DailyCashFlow.WebApi
@@ -25,6 +27,11 @@ namespace DailyCashFlow.WebApi
 			services.AddControllers(options =>
 			{
 				options.Filters.Add<GlobalExceptionFilter>();
+			})
+			.AddOData(opt =>
+			{
+				var odataBuilder = new ODataConventionModelBuilder();
+				opt.AddODataConfiguration(odataBuilder);
 			});
 
 			services.AddDatabaseConfiguration(Configuration);
