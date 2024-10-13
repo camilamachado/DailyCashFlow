@@ -1,5 +1,7 @@
 ﻿using DailyCashFlow.Application.Features.Auth.Services;
+using DailyCashFlow.Domain.Features.Categories;
 using DailyCashFlow.Domain.Features.Users;
+using DailyCashFlow.Infra.Data.Features.Categories;
 using DailyCashFlow.Infra.Data.Features.Users;
 
 namespace DailyCashFlow.WebApi.Configurations
@@ -13,9 +15,13 @@ namespace DailyCashFlow.WebApi.Configurations
 			// Services
 			services.AddScoped<IJWTService, JWTService>();
 
+			// Factories
+			services.AddScoped<IUserFactory, UserFactory>();
+			services.AddScoped<ICategoryFactory, CategoryFactory>();
+
 			// Repositories
 			services.AddScoped<IUserRepository, UserRepository>();
-			services.AddScoped<IUserFactory, UserFactory>();
+			services.AddScoped<ICategoryRepository, CategoryRepository>();
 		}
 	}
 }

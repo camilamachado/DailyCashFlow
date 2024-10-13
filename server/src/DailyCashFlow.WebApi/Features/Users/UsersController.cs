@@ -1,4 +1,5 @@
-﻿using DailyCashFlow.Application.Features.Users.Handlers;
+﻿using AutoMapper;
+using DailyCashFlow.Application.Features.Users.Handlers;
 using DailyCashFlow.WebApi.Base;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +11,7 @@ namespace DailyCashFlow.WebApi.Features.Users
 	{
 		private readonly IMediator _mediator;
 
-		public UsersController(IMediator mediator)
+		public UsersController(IMediator mediator, IMapper mapper) : base(mapper)
 		{
 			_mediator = mediator;
 		}

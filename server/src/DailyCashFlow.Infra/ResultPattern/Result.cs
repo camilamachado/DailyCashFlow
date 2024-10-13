@@ -30,6 +30,12 @@
 			return new Result<TSuccess, TFailure>(default, failure, false);
 		}
 
+		// Método para converter Result em Task<Result>
+		public Task<Result<TSuccess, TFailure>> AsTask()
+		{
+			return Task.FromResult(this);
+		}
+
 		// Conversão implícita de TFailure (falha) para Result<TSuccess, TFailure>
 		public static implicit operator Result<TSuccess, TFailure>(TFailure failure)
 		{
@@ -42,6 +48,4 @@
 			return Ok(success);
 		}
 	}
-
-
 }
