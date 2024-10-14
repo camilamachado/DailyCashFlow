@@ -37,7 +37,7 @@ namespace DailyCashFlow.Domain.Features.Transactions
 			}
 			else if (!hasAnyCategoryCallback.Success)
 			{
-				return new NotFoundException($"Category Id {transaction.CategoryId} not found.");
+				return new NotFoundException($"A category with ID {transaction.CategoryId} does not exist.");
 			}
 
 			var isDuplicateTransactionCallback = await _transactionRepository.HasDuplicateTransactionAsync(transaction);

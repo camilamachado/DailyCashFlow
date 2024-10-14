@@ -25,6 +25,10 @@ namespace DailyCashFlow.Common.Tests.Helpers
 			var categoriesToRemove = context.Categories.Where(category => !defaultCategories.Contains(category.Name));
 			context.Categories.RemoveRange(categoriesToRemove);
 
+			// Remove todas as transações
+			var transactionsToRemove = context.Transactions.ToList();
+			context.Transactions.RemoveRange(transactionsToRemove);
+
 			context.SaveChanges();
 		}
 	}
