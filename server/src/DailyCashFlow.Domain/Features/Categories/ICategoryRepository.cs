@@ -23,5 +23,12 @@ namespace DailyCashFlow.Domain.Features.Categories
 		/// </summary>
 		/// <returns>Retorna um resultado contendo uma lista de categorias em caso de sucesso ou uma exceção em caso de falha.</returns>
 		Result<IQueryable<Category>, Exception> GetAll();
+
+		/// <summary>
+		/// Verifica se já existe uma categoria com o id fornecido.
+		/// </summary>
+		/// <param name="id">O id da categoria a ser verificado.</param>
+		/// <returns>Retorna um resultado contendo um valor booleano indicando se o id da categoria existe ou não ou uma exceção em caso de falha..</returns>
+		Task<Result<bool, Exception>> HasAnyByIdAsync(int id);
 	}
 }

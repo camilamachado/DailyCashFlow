@@ -36,6 +36,13 @@ namespace DailyCashFlow.Infra.Data.Features.Categories
 			}
 		}
 
+		public async Task<Result<bool, Exception>> HasAnyByIdAsync(int id)
+		{
+			var hasAny = await _context.Categories.AnyAsync(u => u.Id == id);
+
+			return hasAny;
+		}
+
 		public async Task<Result<bool, Exception>> HasAnyByNameAsync(string name)
 		{
 			var hasAny = await _context.Categories.AnyAsync(u => u.Name.ToLower() == name.ToLower());
