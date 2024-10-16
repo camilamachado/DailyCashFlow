@@ -33,7 +33,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyCashFlow.WebApi.Integr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyCashFlow.Common.Tests", "tests\DailyCashFlow.Common.Tests\DailyCashFlow.Common.Tests.csproj", "{91F12CC9-8F9F-4CE4-A829-22538087E2DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyCashFlow.Auth.Integration.Tests", "tests\DailyCashFlow.Auth.Integration.Tests\DailyCashFlow.Auth.Integration.Tests.csproj", "{34FE38E3-8B49-446D-81BC-1A17A314DB59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyCashFlow.Auth.Integration.Tests", "tests\DailyCashFlow.Auth.Integration.Tests\DailyCashFlow.Auth.Integration.Tests.csproj", "{34FE38E3-8B49-446D-81BC-1A17A314DB59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyCashFlow.Processor", "src\DailyCashFlow.Processor\DailyCashFlow.Processor.csproj", "{8A3655C4-C97B-444D-959A-AFA4C9491D2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{34FE38E3-8B49-446D-81BC-1A17A314DB59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34FE38E3-8B49-446D-81BC-1A17A314DB59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34FE38E3-8B49-446D-81BC-1A17A314DB59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A3655C4-C97B-444D-959A-AFA4C9491D2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A3655C4-C97B-444D-959A-AFA4C9491D2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A3655C4-C97B-444D-959A-AFA4C9491D2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A3655C4-C97B-444D-959A-AFA4C9491D2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -100,6 +106,7 @@ Global
 		{1E532DC5-2215-4013-AAAE-6EF9F94B7C7F} = {0B93DA00-28F7-41E9-951A-38B655532199}
 		{91F12CC9-8F9F-4CE4-A829-22538087E2DB} = {0B93DA00-28F7-41E9-951A-38B655532199}
 		{34FE38E3-8B49-446D-81BC-1A17A314DB59} = {0B93DA00-28F7-41E9-951A-38B655532199}
+		{8A3655C4-C97B-444D-959A-AFA4C9491D2B} = {7C0CDAC0-FB5E-4EF8-B76D-914E0D8D87BF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5557F393-58C7-4951-9CEB-E24574B29D7C}

@@ -1,4 +1,5 @@
 using DailyCashFlow.WebApi;
+using DailyCashFlow.WebApi.Configurations;
 using Serilog;
 
 public class Program
@@ -20,5 +21,13 @@ public class Program
 			.ConfigureWebHostDefaults(webBuilder =>
 			{
 				webBuilder.UseStartup<Startup>();
-			});
+			})
+		.UseNServiceBus(context =>
+		{
+			var endpointConfiguration = new EndpointConfiguration("DailyCashFlow.WebApi");
+
+			context.AddNServiceBusConfiguration(endpointConfiguration);
+
+			return endpointConfiguration;
+		});
 }

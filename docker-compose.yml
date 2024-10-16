@@ -13,8 +13,6 @@ services:
       - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=DailyCashFlowDB;User Id=sa;Password=YourStrong@Passw0rd;Encrypt=False;
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
-    networks:
-      - mynetwork
 
   web-api:
     container_name: web-api
@@ -26,12 +24,23 @@ services:
       - "5003:80"
     depends_on:
       - sqlserver
+      - rabbitmq
     environment:
       - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=DailyCashFlowDB;User Id=sa;Password=YourStrong@Passw0rd;Encrypt=False;
+      - NServiceBus__RabbitMQ__ConnectionString=host=rabbitmq;username=guest;password=guest
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
-    networks:
-      - mynetwork
+
+  processor:
+    container_name: processor
+    image: processor
+    build:
+      context: ./server/src
+      dockerfile: DailyCashFlow.Processor/Dockerfile
+    depends_on:
+      - rabbitmq
+    environment:
+      - NServiceBus__RabbitMQ__ConnectionString=host=rabbitmq;username=guest;password=guest
 
   sqlserver:
     container_name: sqlserver
@@ -43,8 +52,16 @@ services:
       - "1433:1433"
     volumes:
       - sqlvolume:/var/opt/mssql
-    networks:
-      - mynetwork
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672" # Porta padrão do RabbitMQ (usada pelo NServiceBus)
+      - "15672:15672" # Porta da interface de gerenciamento (acessível via browser)
 
   portainer:
     container_name: portainer
@@ -59,8 +76,3 @@ services:
 volumes:
   sqlvolume:
   portainer_data:
-
-
-networks:
-  mynetwork:
-    driver: bridge

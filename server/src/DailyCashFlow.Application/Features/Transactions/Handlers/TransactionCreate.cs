@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DailyCashFlow.Application.Features.Transactions.Events;
 using DailyCashFlow.Domain.Features.Transactions;
 using DailyCashFlow.Infra.ResultPattern;
 using FluentValidation;
@@ -51,13 +52,20 @@ namespace DailyCashFlow.Application.Features.Transactions.Handlers
 			private readonly ITransactionFactory _transactionFactory;
 			private readonly ITransactionRepository _transactionRepository;
 			private readonly IMapper _mapper;
+			private readonly IMessageSession _messageSession;
 			private readonly ILogger<Handler> _logger;
 
-			public Handler(ITransactionFactory transactionFactory, ITransactionRepository transactionRepository, IMapper mapper, ILogger<Handler> logger)
+			public Handler(
+				ITransactionFactory transactionFactory,
+				ITransactionRepository transactionRepository,
+				IMapper mapper,
+				IMessageSession messageSession,
+				ILogger<Handler> logger) 
 			{
 				_transactionFactory = transactionFactory;
 				_transactionRepository = transactionRepository;
 				_mapper = mapper;
+				_messageSession = messageSession;
 				_logger = logger;
 			}
 
@@ -78,6 +86,15 @@ namespace DailyCashFlow.Application.Features.Transactions.Handlers
 					_logger.LogError(addTransactionCallback.Failure, "Failed to add transaction to repository for CategoryId {CategoryId} and Date {Date}", transaction.CategoryId, transaction.Date);
 					return addTransactionCallback.Failure;
 				}
+
+				var transactionCreatedEvent = new TransactionCreatedEvent
+				{
+					Date = request.Date,
+					Type = request.Type,
+					Amount = request.Amount,
+				};
+
+				await _messageSession.Publish(transactionCreatedEvent);
 
 				return addTransactionCallback.Success.Id;
 			}
