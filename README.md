@@ -26,7 +26,9 @@ O arquivo `docker-compose.yml` define os serviços da aplicação. A configuraç
 
 - `auth-api`: A API de autenticação.
 - `web-api`: A API principal.
+- `processor`: Serviço responsável por processar mensagens do RabbitMQ.
 - `sqlserver`: O banco de dados SQL Server.
+- `rabbitmq`: Sistema de mensageria para comunicação entre serviços.
 - `portainer`: Interface de gerenciamento de contêineres Docker.
 
 ## Acessando documentação das APIs
