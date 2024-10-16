@@ -35,7 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyCashFlow.Common.Tests"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyCashFlow.Auth.Integration.Tests", "tests\DailyCashFlow.Auth.Integration.Tests\DailyCashFlow.Auth.Integration.Tests.csproj", "{34FE38E3-8B49-446D-81BC-1A17A314DB59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyCashFlow.Processor", "src\DailyCashFlow.Processor\DailyCashFlow.Processor.csproj", "{8A3655C4-C97B-444D-959A-AFA4C9491D2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyCashFlow.Processor", "src\DailyCashFlow.Processor\DailyCashFlow.Processor.csproj", "{8A3655C4-C97B-444D-959A-AFA4C9491D2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

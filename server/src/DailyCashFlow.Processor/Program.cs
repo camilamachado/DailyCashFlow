@@ -12,6 +12,14 @@ public class Program
 				config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 				config.AddEnvironmentVariables();
 			})
+			.ConfigureServices((context, services) =>
+			{
+				services.AddDatabaseConfiguration(context.Configuration);
+				services.AddAutoMapperConfiguration();
+				services.AddDependencyInjectionConfiguration();
+				services.AddMediatrConfiguration();
+				services.AddFluentValidationConfiguration();
+			})
 			.UseNServiceBus(context =>
 			{
 				var endpointConfiguration = new EndpointConfiguration("DailyCashFlow.Processor");
