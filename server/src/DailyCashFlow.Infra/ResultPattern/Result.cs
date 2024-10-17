@@ -9,8 +9,8 @@
 
 		private Result(TSuccess? success, TFailure? failure, bool isSuccess)
 		{
-			if (isSuccess && success is null)
-				throw new ArgumentNullException(nameof(success), "Success cannot be null when the result is successful.");
+			if (isSuccess && success is null && typeof(TSuccess).IsValueType)
+				throw new ArgumentNullException(nameof(success), "Success cannot be null when the result is successful for value types.");
 
 			if (!isSuccess && failure is null)
 				throw new ArgumentNullException(nameof(failure), "Failure cannot be null when the result is a failure.");
