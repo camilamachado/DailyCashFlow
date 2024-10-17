@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DailyCashFlow.Application.Features.DailyBalances.Handlers;
+using DailyCashFlow.Domain.Features.DailyBalances;
+using DailyCashFlow.Infra.ResultPattern;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DailyCashFlow.Processor.Configurations
 {
@@ -12,6 +16,8 @@ namespace DailyCashFlow.Processor.Configurations
 			{
 				cfg.RegisterServicesFromAssemblyContaining(typeof(Program));
 			});
+
+			services.AddTransient<IRequestHandler<CalculateDailyBalance.Command, Result<DailyBalance, Exception>>, CalculateDailyBalance.Handler>();
 		}
 	}
 }
