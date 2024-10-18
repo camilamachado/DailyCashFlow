@@ -1,4 +1,5 @@
 ﻿using DailyCashFlow.Domain.Features.Categories;
+using DailyCashFlow.Domain.Features.DailyBalances;
 using Microsoft.AspNetCore.OData;
 using Microsoft.OData.ModelBuilder;
 
@@ -19,6 +20,7 @@ namespace DailyCashFlow.WebApi.Configurations
 			// Adiciona a configuração OData sem o endpoint de metadados
 			oDataOptions.AddRouteComponents("odata", oDataBuilder.GetEdmModel());
 			oDataBuilder.EntitySet<Category>("Category");
+			oDataBuilder.EntitySet<DailyBalance>("DailyBalance");
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using DailyCashFlow.Infra.ResultPattern;
+﻿using DailyCashFlow.Domain.Features.Categories;
+using DailyCashFlow.Infra.ResultPattern;
 
 namespace DailyCashFlow.Domain.Features.DailyBalances
 {
@@ -28,5 +29,11 @@ namespace DailyCashFlow.Domain.Features.DailyBalances
 		/// <param name="dailyBalance">O saldo diário a ser atualizado.</param>
 		/// <returns>Retorna um resultado contendo o saldo diário atualizado em caso de sucesso ou uma exceção em caso de falha.</returns>
 		Task<Result<DailyBalance, Exception>> UpdateAsync(DailyBalance dailyBalance);
+
+		/// <summary>
+		/// Recupera todos registros de saldo diário do repositório.
+		/// </summary>
+		/// <returns>Retorna um resultado contendo uma lista de registros de saldo diário em caso de sucesso ou uma exceção em caso de falha.</returns>
+		Result<IQueryable<DailyBalance>, Exception> GetAllNoTracking();
 	}
 }

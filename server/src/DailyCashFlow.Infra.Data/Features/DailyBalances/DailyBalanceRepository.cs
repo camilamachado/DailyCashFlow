@@ -1,4 +1,5 @@
 ﻿using DailyCashFlow.Domain.Exceptions;
+using DailyCashFlow.Domain.Features.Categories;
 using DailyCashFlow.Domain.Features.DailyBalances;
 using DailyCashFlow.Infra.Data.Context;
 using DailyCashFlow.Infra.ResultPattern;
@@ -21,6 +22,20 @@ namespace DailyCashFlow.Infra.Data.Features.DailyBalances
 			await _context.SaveChangesAsync();
 
 			return dailyBalance;
+		}
+
+		public Result<IQueryable<DailyBalance>, Exception> GetAllNoTracking()
+		{
+			try
+			{
+				var query = _context.DailyBalances.AsNoTracking().AsQueryable();
+
+				return Result<IQueryable<DailyBalance>, Exception>.Ok(query);
+			}
+			catch (Exception ex)
+			{
+				return ex;
+			}
 		}
 
 		#nullable enable

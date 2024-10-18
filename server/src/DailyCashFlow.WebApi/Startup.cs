@@ -3,6 +3,7 @@ using DailyCashFlow.WebApi.Filters;
 using Microsoft.AspNetCore.OData;
 using Microsoft.OData.ModelBuilder;
 using Serilog;
+using System.Text.Json.Serialization;
 
 namespace DailyCashFlow.WebApi
 {
@@ -27,6 +28,11 @@ namespace DailyCashFlow.WebApi
 			services.AddControllers(options =>
 			{
 				options.Filters.Add<GlobalExceptionFilter>();
+			})
+			.AddJsonOptions(options =>
+			{
+				options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+				options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
 			})
 			.AddOData(opt =>
 			{
